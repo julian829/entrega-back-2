@@ -2,12 +2,22 @@ package com.llanera.carnellanera.mapper;
 
 import com.llanera.carnellanera.dto.ProductoDTO;
 import com.llanera.carnellanera.model.Producto;
-import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring")
-public interface ProductoMapper {
+@Component
+public class ProductoMapper {
 
-    ProductoDTO toDto(Producto producto);
+    public ProductoDTO toDto(Producto producto) {
+        ProductoDTO dto = new ProductoDTO();
+        dto.setNombre(producto.getNombre());
+        dto.setPrecio(producto.getPrecio());
+        return dto;
+    }
 
-    Producto toEntity(ProductoDTO dto);
+    public Producto toEntity(ProductoDTO dto) {
+        Producto producto = new Producto();
+        producto.setNombre(dto.getNombre());
+        producto.setPrecio(dto.getPrecio());
+        return producto;
+    }
 }
